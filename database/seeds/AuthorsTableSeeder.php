@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Author;
+use Faker\Generator as Faker;
 
 class AuthorsTableSeeder extends Seeder
 {
@@ -10,16 +11,25 @@ class AuthorsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        $authors = config('authors');
+        // $authors = config('authors');
+        //
+        // foreach ($authors as $author) {
+        //     $new_author_object = new Author();
+        //     $new_author_object->name = $author['name'];
+        //     $new_author_object->lastname = $author['lastname'];
+        //     $new_author_object->date_of_birth = $author['date_of_birth'];
+        //     $new_author_object->save();
+        // }
 
-        foreach ($authors as $author) {
+        for ($i=0; $i < 100; $i++) {
             $new_author_object = new Author();
-            $new_author_object->name = $author['name'];
-            $new_author_object->lastname = $author['lastname'];
-            $new_author_object->date_of_birth = $author['date_of_birth'];
+            $new_author_object->name = $faker->firstName();
+            $new_author_object->lastname = $faker->lastName();
+            $new_author_object->date_of_birth = $faker->date();
             $new_author_object->save();
         }
+
     }
 }
